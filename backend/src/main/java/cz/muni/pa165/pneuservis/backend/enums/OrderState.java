@@ -12,4 +12,4 @@ package cz.muni.pa165.pneuservis.backend.enums;
 public enum OrderState {
 	RECEIVED, CANCELED, DONE
 }
-///
+

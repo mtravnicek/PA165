@@ -3,18 +3,11 @@ package cz.muni.pa165.pneuservis.backend.domain;
 //import cz.fi.muni.pa165.entity.OrderItem;
 import cz.muni.pa165.pneuservis.backend.enums.OrderState;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -23,35 +16,38 @@ import javax.validation.constraints.NotNull;
  * Created by Michal Travnicek on 10/26/2016.
  */
 @Entity
+@Table(name="Orders")
 public class Order extends AbstractAuditedEntity {
-    
-    @ManyToOne(optional=false)
-    @NotNull
+
+    @ManyToOne(optional = false)
+    @NotNull    
     private User user;
+    
     @NotNull
     private String address;
+    
     @NotNull
     private String phone;
+    
     @DecimalMin("0.0")
     @NotNull
     private BigDecimal price;
-        
+
+    @ManyToOne(optional = false)
     @NotNull
     private Tire tire;
-    
+
     @Min(1)
     @NotNull
     private Integer tireQuantity;
-    
+
     @Enumerated
-	@NotNull
-	private OrderState state;
+    @NotNull
+    private OrderState state;
 
+    public Order() {
 
-
-  public Order() {
-  
-  }
+    }
 
     public User getUser() {
         return user;
@@ -126,8 +122,10 @@ public class Order extends AbstractAuditedEntity {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof Order)) return false;
-        
+        if (!(obj instanceof Order)) {
+            return false;
+        }
+
         final Order other = (Order) obj;
         if (!Objects.equals(getState(), other.getState())) {
             return false;
@@ -140,9 +138,5 @@ public class Order extends AbstractAuditedEntity {
         }
         return true;
     }
-  
-  
-  
-  
-  
+
 }
