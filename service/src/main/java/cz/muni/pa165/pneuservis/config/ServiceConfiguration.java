@@ -1,6 +1,6 @@
 package cz.muni.pa165.pneuservis.config;
 
-import cz.muni.pa165.pneuservis.persistence.Config;
+import cz.muni.pa165.pneuservis.persistence.config.PersistenceConfiguration;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @ComponentScan(basePackages = "cz.muni.pa165.pneuservis.*")
-@Import(Config.class)
+@Import(PersistenceConfiguration.class)
 public class ServiceConfiguration {
     @Bean
     public Mapper dozer() {

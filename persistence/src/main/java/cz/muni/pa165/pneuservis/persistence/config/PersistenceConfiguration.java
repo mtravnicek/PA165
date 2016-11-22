@@ -1,4 +1,4 @@
-package cz.muni.pa165.pneuservis.persistence;
+package cz.muni.pa165.pneuservis.persistence.config;
 
 import cz.muni.pa165.pneuservis.persistence.config.LoggingAspect;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @ComponentScan
 @EnableJpaRepositories
-public class Config {
+public class PersistenceConfiguration {
     @Bean
     public LoggingAspect loggingAspect() {
         return new LoggingAspect();
