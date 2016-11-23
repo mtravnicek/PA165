@@ -22,28 +22,33 @@ public class AdditionalServiceFacadeImpl implements AdditionalServiceFacade {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Inject
-    public AdditionalServiceService serviceService;
+    public AdditionalServiceService additionalServiceService;
     @Inject
     public BeanMappingService mappingService;
 
-    public AdditionalServiceDTO create(AdditionalServiceDTO dto) {
+    public AdditionalServiceDTO save(AdditionalServiceDTO dto) {
+        logger.info("Requested to save AdditionalService : {}", dto);
         AdditionalService service = mappingService.mapTo(dto, AdditionalService.class);
-        return mappingService.mapTo(serviceService.save(service), AdditionalServiceDTO.class);
-    }
-
-    public AdditionalServiceDTO update(AdditionalServiceDTO dto) {
-        return null;
+        return mappingService.mapTo(additionalServiceService.save(service), AdditionalServiceDTO.class);
     }
 
     public AdditionalServiceDTO findOne(Long id) {
-        return null;
+        logger.info("Requested to find AdditionalService with id : {}", id);
+        return mappingService.mapTo(additionalServiceService.findOne(id), AdditionalServiceDTO.class);
     }
 
     public List<AdditionalServiceDTO> findAll() {
-        return null;
+        logger.info("Requested to find all AdditionalServices");
+        return mappingService.mapTo(additionalServiceService.findAll(), AdditionalServiceDTO.class);
+    }
+
+    public List<AdditionalServiceDTO> findByNameContaining(String name) {
+        logger.info("Requested to find all AdditionalServices containing name : {}", name);
+        return mappingService.mapTo(additionalServiceService.findByNameContaining(name), AdditionalServiceDTO.class);
     }
 
     public void delete(Long id) {
-
+        logger.info("Requested to delete AdditionalService with id : {}", id);
+        additionalServiceService.delete(id);
     }
 }
