@@ -1,6 +1,6 @@
 package cz.muni.pa165.pneuservis.persistence.config;
 
-import cz.muni.pa165.pneuservis.persistence.config.LoggingAspect;
+import cz.muni.pa165.pneuservis.persistence.repository.UserRepository;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,8 +21,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
-@ComponentScan
-@EnableJpaRepositories
+@ComponentScan(basePackageClasses = UserRepository.class)
+@EnableJpaRepositories(basePackageClasses = UserRepository.class)
 public class PersistenceConfiguration {
     @Bean
     public LoggingAspect loggingAspect() {
