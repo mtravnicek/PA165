@@ -40,5 +40,6 @@ public class AdditionalServiceServiceTest extends AbstractTestNGSpringContextTes
         service.setDescription("Opis");
         service.setPrice(BigDecimal.TEN);
         serviceService.save(service);
+        //dummy
     }
 }
